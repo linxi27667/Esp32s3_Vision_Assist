@@ -1,0 +1,2 @@
+source E:/MCU/esp32/Myesps3Project/wifi_connect/build/gdbinit/symbols
+source E:/MCU/esp32/Myesps3Project/wifi_connect/build/gdbinit/connect

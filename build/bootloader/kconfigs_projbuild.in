@@ -1,0 +1,5 @@
+source "E:/MCU/esp32/v5.2.6/esp-idf/components/bootloader/Kconfig.projbuild"
+source "E:/MCU/esp32/v5.2.6/esp-idf/components/esp_app_format/Kconfig.projbuild"
+source "E:/MCU/esp32/v5.2.6/esp-idf/components/esp_rom/Kconfig.projbuild"
+source "E:/MCU/esp32/v5.2.6/esp-idf/components/esptool_py/Kconfig.projbuild"
+source "E:/MCU/esp32/v5.2.6/esp-idf/components/partition_table/Kconfig.projbuild"
