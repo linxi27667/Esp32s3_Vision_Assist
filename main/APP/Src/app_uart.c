@@ -26,13 +26,37 @@ static void On_AI_Chat_Received(const uint8_t *data, uint32_t len) {
     if (strlen(clean_str) > 0) {
         ESP_LOGI(TAG, "💻 串口收到指令: %s", clean_str);
         
-        // 2. 判断指令类型并投递到队列
-        if (strncmp(clean_str, "img", 3) == 0) {
-            // 发送图像识别指令 (非阻塞)
+        // 2. 增强型指令解析
+        if (strncmp(clean_str, "img ", 4) == 0) {
+            // 2.1 显式指令带参数: "img 帮我看看这是什么"
+            char *prompt = clean_str + 4; // 跳过 "img "
+            ESP_LOGI(TAG, "📸 显式视觉指令，提示词: %s", prompt);
+            App_Message_Send(MSG_TYPE_CMD_IMAGE, prompt);
+        }
+        else if (strncmp(clean_str, "img", 3) == 0 && clean_str[3] == '\0') {
+            // 2.2 显式指令无参数: "img"
+            ESP_LOGI(TAG, "📸 显式视觉指令 (默认提示词)");
             App_Message_Send(MSG_TYPE_CMD_IMAGE, NULL);
-        } else {
-            // 发送文本对话请求 (非阻塞)
-            App_Message_Send(MSG_TYPE_TEXT, clean_str);
+        }
+        else {
+            // 2.3 自然语言关键词探测
+            const char *triggers[] = {"看看", "这是", "认一下", "照片", "图片", "帮我找", NULL};
+            bool is_vision_request = false;
+            
+            for (int i = 0; triggers[i] != NULL; i++) {
+                if (strstr(clean_str, triggers[i]) != NULL) {
+                    is_vision_request = true;
+                    break;
+                }
+            }
+
+            if (is_vision_request) {
+                ESP_LOGI(TAG, "👁️ 检测到视觉意图关键词，自动触发拍照识别...");
+                App_Message_Send(MSG_TYPE_CMD_IMAGE, clean_str);
+            } else {
+                // 2.4 普通文本对话
+                App_Message_Send(MSG_TYPE_TEXT, clean_str);
+            }
         }
     }
 }

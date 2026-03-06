@@ -22,8 +22,15 @@ bool BSP_Camera_Init(camera_config_t *config) {
     sensor_t *s = esp_camera_sensor_get();
     if (s != NULL) {
         ESP_LOGI(TAG, "成功点亮摄像头! 传感器 PID: 0x%x", s->id.PID);
-        s->set_vflip(s, 1);  // 开启画面翻转
-        s->set_hmirror(s, 1); // 开启水平镜像 (Horizontal Mirror)
+        // 【核心修复】关闭垂直翻转和水平镜像，解决“拍天花板”问题
+        s->set_vflip(s, 1);  // 垂直翻转
+        s->set_hmirror(s, 0); // 水平镜像
+        
+        // 升级：开启自动曝光 (AEC) 和自动白平衡 (AWB)，并开启去频闪模式 (Banding Filter)
+        s->set_aec2(s, 1);    // 开启 AEC DSP
+        s->set_awb_gain(s, 1);// 开启 AWB 增益
+        s->set_lenc(s, 1);    // 开启镜头校正
+        s->set_dcw(s, 1);     // 开启 Downsize En (缩放优化)
     }
     return true;
 }

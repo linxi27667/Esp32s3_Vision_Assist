@@ -10,6 +10,8 @@
 #include "cJSON.h"
 #include "app_doubao_client.h"
 #include "sdkconfig.h"
+#include "app_message.h"
+#include "app_video_server.h"
 
 static const char *TAG = "DOUBAO_AI";
 
@@ -20,7 +22,7 @@ static const char *TAG = "DOUBAO_AI";
 // 注意：Bearer 后面有一个空格！例如 "Bearer sk-1234567890abcdef"
 
 // 填入你的模型接入点 (Endpoint ID)
-#define DOUBAO_MODEL_EP     "ep-20260305211914-c6dlg" 
+#define DOUBAO_MODEL_EP     "ep-20260306160831-plh6x" 
 #define DOUBAO_API_URL      "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
 // ==========================================
 
@@ -214,7 +216,12 @@ void App_Doubao_Post(const char *user_prompt) {
                     cJSON *content = cJSON_GetObjectItem(message, "content");
                     
                     if (cJSON_IsString(content)) {
-                        ESP_LOGI(TAG, "豆包回复: %s", content->valuestring);
+                        char *ans = content->valuestring;
+                        ESP_LOGI(TAG, "豆包回复: %s", ans);
+                        
+                        // 3. 将豆包的回复加入历史记录 (实现记忆闭环)
+                        History_Add("assistant", ans);
+
                     } else {
 #if (DEBUG_MODE == 1)
                         ESP_LOGE(TAG, "未提取到有效回答内容");
@@ -256,23 +263,39 @@ void App_Doubao_Post_Image(const char *image_data_uri, const char *prompt) {
         return;
     }
 
+    // 1. 将用户的视觉问题加入历史记录 (保持上下文)
+    // 优化默认提示词，强制要求给出判断结论
+    const char *final_prompt = (prompt && prompt[0] != '\0') ? prompt : "请基于图片判断物品状态（如是否用完、是否存在），要给出明确结论， 并且要给出情景决策";
+    History_Add("user", final_prompt);
+
     cJSON *root = cJSON_CreateObject();
     cJSON_AddStringToObject(root, "model", DOUBAO_MODEL_EP);
 
     cJSON *messages = cJSON_CreateArray();
 
+    // 2.1 系统人设设定 (System Prompt) - 始终放在第一条
     cJSON *msg_sys = cJSON_CreateObject();
     cJSON_AddStringToObject(msg_sys, "role", "system");
-    cJSON_AddStringToObject(msg_sys, "content", "你是一个名叫'银发智护'的老年人陪伴管家。请用简短、温柔、通俗的中文回答问题。");
+    // 强化 System Prompt，强制 AI 给出明确判断，禁止废话
+    cJSON_AddStringToObject(msg_sys, "content", "你是一个名叫'银发智护'的老年人陪伴管家。请必须基于图片回答用户的具体问题。1. 优先用温暖、亲切的口吻（如称呼'爷爷'）给出明确判断结论（如“可乐还没喝完呢”）；2. 结论后可加一句简短的关怀或建议3. 禁止机械地描述画面背景，要像家人一样对话。");
     cJSON_AddItemToArray(messages, msg_sys);
 
+    // 2.2 填充历史对话记录 (纯文本历史)
+    for (int i = 0; i < history_count - 1; i++) { // 注意：-1 是因为最新的一条是本次的视觉问题，需要单独特殊构造
+        cJSON *msg_hist = cJSON_CreateObject();
+        cJSON_AddStringToObject(msg_hist, "role", history[i].role);
+        cJSON_AddStringToObject(msg_hist, "content", history[i].content);
+        cJSON_AddItemToArray(messages, msg_hist);
+    }
+
+    // 2.3 构造本次的多模态消息 (Text + Image)
     cJSON *msg_usr = cJSON_CreateObject();
     cJSON_AddStringToObject(msg_usr, "role", "user");
     cJSON *content = cJSON_CreateArray();
 
     cJSON *text_item = cJSON_CreateObject();
     cJSON_AddStringToObject(text_item, "type", "text");
-    cJSON_AddStringToObject(text_item, "text", (prompt && prompt[0] != '\0') ? prompt : "请识别图片内容并用一句话描述");
+    cJSON_AddStringToObject(text_item, "text", final_prompt);
     cJSON_AddItemToArray(content, text_item);
 
     cJSON *img_item = cJSON_CreateObject();
@@ -297,10 +320,10 @@ void App_Doubao_Post_Image(const char *image_data_uri, const char *prompt) {
         #else
         .crt_bundle_attach = esp_crt_bundle_attach_all,
         #endif
-        .timeout_ms = 30000,
-        .keep_alive_enable = true,
-        .buffer_size = 4096,
-        .buffer_size_tx = 4096,
+        .timeout_ms = 60000,                        // 升级：60秒超时，等待长回复
+        .keep_alive_enable = true,                  // 保留长连接
+        .buffer_size = MAX_HTTP_RECV_BUFFER,        // 接收缓冲区
+        .buffer_size_tx = 4096,                    // 发送缓冲区
     };
     esp_http_client_handle_t client = esp_http_client_init(&config);
     if (client == NULL) {
@@ -329,7 +352,11 @@ void App_Doubao_Post_Image(const char *image_data_uri, const char *prompt) {
                     cJSON *message = cJSON_GetObjectItem(choice, "message");
                     cJSON *content_resp = cJSON_GetObjectItem(message, "content");
                     if (cJSON_IsString(content_resp)) {
-                        ESP_LOGI(TAG, "豆包回复: %s", content_resp->valuestring);
+                        char *ans = content_resp->valuestring;
+                        ESP_LOGI(TAG, "豆包回复: %s", ans);
+                        
+                        // 3. 将豆包的视觉回复加入历史记录 (形成闭环)
+                        History_Add("assistant", ans);
                     }
                 }
                 cJSON_Delete(resp_json);
@@ -345,23 +372,47 @@ void App_Doubao_Post_Image(const char *image_data_uri, const char *prompt) {
     }
 }
 
-// 独立的 FreeRTOS 任务
-void doubao_task(void *pvParameters) {
+/* ================= AI 大脑任务：统一处理所有智能决策 ================= */
+static void doubao_message_task(void *pvParameters) {
+    Input_Message_t msg;
+    
     // 延迟 5 秒，确保 Wi-Fi 已经完全连接并且拿到了 IP
     vTaskDelay(pdMS_TO_TICKS(5000));
-    
-#if (DEBUG_MODE == 1)
-    ESP_LOGI(TAG, "网络就绪，开始测试 AI 对话...");
-#endif
-    
-    // 发起你的第一次大模型对话！
-    App_Doubao_Post("你好！我是广州商学院的一名大学生，我正在用ESP32单片机和你对话。你能用一句鼓励的话回应我吗？");
-    
-    // 测试完成后，任务自我销毁
-    vTaskDelete(NULL);
+    ESP_LOGI(TAG, "🧠 AI 大脑任务启动，正在监听指令队列...");
+
+    while (1) {
+        // 永久阻塞等待消息队列 (核心：这里释放了 CPU 给其他任务)
+        if (xQueueReceive(xQueue_Brain, &msg, portMAX_DELAY) == pdPASS) {
+            
+            ESP_LOGI(TAG, "🧠 大脑收到指令，类型: %d", msg.type);
+
+            switch (msg.type) {
+                case MSG_TYPE_TEXT:
+                    // 收到文本，直接请求豆包大模型
+                    App_Doubao_Post(msg.content);
+                    break;
+
+                case MSG_TYPE_CMD_IMAGE:
+                    // 收到拍照指令，触发视觉识别流程
+                    ESP_LOGI(TAG, "📸 执行视觉识别任务...");
+                    // 关键修复：传入用户的原始问题 (msg.content)
+                    // 如果是 "img" 指令，msg.content 可能为空，App_Video_Capture_And_Recognize 内部会处理
+                    App_Video_Capture_And_Recognize(msg.content); 
+                    break;
+
+                default:
+                    ESP_LOGW(TAG, "未知指令类型: %d", msg.type);
+                    break;
+            }
+
+            // 处理完一条指令后，打印剩余内存监控
+            ESP_LOGI(TAG, "任务完成。剩余堆内存: %lu Bytes", esp_get_free_heap_size());
+        }
+    }
 }
 
 void App_Doubao_Task_Start(void) {
-    // 增大任务栈空间到16KB（HTTPS握手+JSON解析需要更大栈）
-    xTaskCreate(doubao_task, "doubao_task", 16384, NULL, 5, NULL);
+    // 启动 AI 大脑主任务 (创建独立的 FreeRTOS 任务)
+    // 栈大小给 16384 (16KB)，优先级设为 5 (中等优先级)
+    xTaskCreate(doubao_message_task, "doubao_task", 16384, NULL, 5, NULL);
 }

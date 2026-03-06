@@ -1818,7 +1818,7 @@
 				{
 					"directoryIndex" : 17,
 					"id" : "__idf_esp_app_format::@08c2bdce7fd85cdbea06",
-					"jsonFile" : "target-__idf_esp_app_format-Debug-a8ba58c9c4fe8f68c822.json",
+					"jsonFile" : "target-__idf_esp_app_format-Debug-c489beeece576cdd3f74.json",
 					"name" : "__idf_esp_app_format",
 					"projectIndex" : 1
 				},
@@ -1951,7 +1951,7 @@
 				{
 					"directoryIndex" : 68,
 					"id" : "__idf_esp_psram::@222fc793c25100a4848d",
-					"jsonFile" : "target-__idf_esp_psram-Debug-2bea06d87fc1f172c0d3.json",
+					"jsonFile" : "target-__idf_esp_psram-Debug-3997e35c10291ea488b1.json",
 					"name" : "__idf_esp_psram",
 					"projectIndex" : 1
 				},
@@ -2070,7 +2070,7 @@
 				{
 					"directoryIndex" : 91,
 					"id" : "__idf_main::@7368607ed66887415643",
-					"jsonFile" : "target-__idf_main-Debug-fa3d2a61a655e564fd64.json",
+					"jsonFile" : "target-__idf_main-Debug-51a96947b7b84449d936.json",
 					"name" : "__idf_main",
 					"projectIndex" : 1
 				},
@@ -2231,7 +2231,7 @@
 				{
 					"directoryIndex" : 26,
 					"id" : "__ldgen_output_sections.ld::@874df54e61e20112dfd4",
-					"jsonFile" : "target-__ldgen_output_sections.ld-Debug-6d92ba6843332a61178e.json",
+					"jsonFile" : "target-__ldgen_output_sections.ld-Debug-3045a3193ba460e568b1.json",
 					"name" : "__ldgen_output_sections.ld",
 					"projectIndex" : 1
 				},
@@ -2567,7 +2567,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "wifi_connect.elf::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-wifi_connect.elf-Debug-4b9c61ef901b61afda24.json",
+					"jsonFile" : "target-wifi_connect.elf-Debug-da68ecc10565bc00c155.json",
 					"name" : "wifi_connect.elf",
 					"projectIndex" : 0
 				}

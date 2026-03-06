@@ -43,11 +43,11 @@ static void HW_Camera_Config_Get(camera_config_t *config) {
 
     // 核心配置
     config->xclk_freq_hz = 24000000; // 告诉底层驱动，外部晶振是 24MHz
-    config->frame_size   = FRAMESIZE_VGA; 
+    config->frame_size   = FRAMESIZE_SVGA; // 升级：提升分辨率到 SVGA (800x600)
     config->pixel_format = PIXFORMAT_JPEG; 
     config->grab_mode    = CAMERA_GRAB_WHEN_EMPTY;
     config->fb_location  = CAMERA_FB_IN_PSRAM; 
-    config->jpeg_quality = 12; 
+    config->jpeg_quality = 10; // 升级：降低压缩率 (数字越小画质越好，10-12是最佳平衡点)
     config->fb_count     = 2;  
 }
 
@@ -104,6 +104,7 @@ void Video_Server_System_Init(void) {
         ESP_LOGE(TAG, "致命错误：摄像头硬件初始化失败，图传服务器终止启动。");
         return;
     }
+    camera_ready = true; // 标记摄像头已就绪
 
     // 2. 配置并启动 HTTP 服务器
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
@@ -124,17 +125,24 @@ void Video_Server_System_Init(void) {
 
 void App_Video_Capture_And_Recognize(const char *prompt) {
     if (!camera_ready) {
-        camera_config_t camera_config;
-        HW_Camera_Config_Get(&camera_config);
-        if (!BSP_Camera_Init(&camera_config)) {
-            ESP_LOGE(TAG, "摄像头初始化失败");
-            return;
-        }
-        camera_ready = true;
+        ESP_LOGW(TAG, "摄像头尚未就绪，无法拍照！");
+        return;
     }
 
-    // 1. 咔嚓！拍照
-    camera_fb_t *fb = esp_camera_fb_get();
+    // 1. 咔嚓！拍照 (洗帧优化版)
+    camera_fb_t *fb = NULL;
+    
+    // 【核心修复】：连续抓取并丢弃前 2 帧旧缓冲，给摄像头自动曝光(AEC)一点时间
+    for (int i = 0; i < 2; i++) {
+        fb = esp_camera_fb_get();
+        if (fb) {
+            esp_camera_fb_return(fb); // 拿到旧图，立刻扔掉
+        }
+    }
+
+    // 真正抓取属于“当下”的最新一帧！
+    fb = esp_camera_fb_get();
+    
     if (!fb || fb->len == 0) {
         ESP_LOGE(TAG, "抓图失败");
         if (fb) esp_camera_fb_return(fb);

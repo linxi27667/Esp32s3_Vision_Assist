@@ -42,7 +42,19 @@ void App_WiFi_System_Init(void) {
 
     // 调用底层开始阻塞连接
     if (BSP_WiFi_Init_And_Connect(&my_wifi_cfg)) {
-        ESP_LOGI(TAG, "WiFi 连接成功");
+        // 获取并打印分配到的 IP 地址
+        esp_netif_ip_info_t ip_info;
+        esp_netif_t *netif = esp_netif_get_handle_from_ifkey("WIFI_STA_DEF"); // 修正大小写错误
+        if (netif) {
+            esp_netif_get_ip_info(netif, &ip_info);
+            ESP_LOGI(TAG, "WiFi 连接成功! 请访问图传地址: http://" IPSTR "/stream", IP2STR(&ip_info.ip));
+        } else {
+            ESP_LOGI(TAG, "WiFi 连接成功 (IP获取未知)");
+        }
+        
+        // 【核心修复】关闭 WiFi 省电模式，确保图传网页响应飞快
+        esp_wifi_set_ps(WIFI_PS_NONE);
+        
     } else {
 #if (DEBUG_MODE == 1)
         ESP_LOGE(TAG, "网络连接失败，请检查密码或路由器状态。系统将在脱机模式下运行。");
