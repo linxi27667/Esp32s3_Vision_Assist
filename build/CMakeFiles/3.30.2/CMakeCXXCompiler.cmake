@@ -27,7 +27,7 @@ set(CMAKE_COMPILER_SYSROOT "E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/esp-13.
 
 set(CMAKE_AR "E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20250707/xtensa-esp-elf/bin/xtensa-esp32s3-elf-ar.exe")
 set(CMAKE_CXX_COMPILER_AR "E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20250707/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc-ar.exe")
-set(CMAKE_RANLIB "E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20250707/xtensa-esp-elf/bin/xtensa-esp32s3-elf-ranlib.exe")
+set(CMAKE_RANLIB ":")
 set(CMAKE_CXX_COMPILER_RANLIB "E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20250707/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc-ranlib.exe")
 set(CMAKE_LINKER "E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20250707/xtensa-esp-elf/bin/xtensa-esp32s3-elf-ld.exe")
 set(CMAKE_LINKER_LINK "")

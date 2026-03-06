@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "wifi_connect",
-    "project_version":    "1",
+    "project_version":    "db0e726-dirty",
     "project_path":       "E:/MCU/esp32/Myesps3Project/wifi_connect",
     "idf_path":           "E:/MCU/esp32/v5.2.6/esp-idf",
     "build_dir":          "E:/MCU/esp32/Myesps3Project/wifi_connect/build",
@@ -835,7 +835,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__esp32-camera" ],
             "file": "E:/MCU/esp32/Myesps3Project/wifi_connect/build/esp-idf/main/libmain.a",
-            "sources": [ "E:/MCU/esp32/Myesps3Project/wifi_connect/main/main.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/APP/Src/app_wifi.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/BSP/Src/bsp_wifi.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/APP/Src/app_video_server.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/BSP/Src/bsp_camera.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/APP/Src/app_doubao_client.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/APP/Src/app_uart.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/BSP/Src/bsp_uart.c" ],
+            "sources": [ "E:/MCU/esp32/Myesps3Project/wifi_connect/main/main.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/APP/Src/app_wifi.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/BSP/Src/bsp_wifi.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/APP/Src/app_video_server.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/BSP/Src/bsp_camera.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/APP/Src/app_doubao_client.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/APP/Src/app_uart.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/APP/Src/app_message.c", "E:/MCU/esp32/Myesps3Project/wifi_connect/main/BSP/Src/bsp_uart.c" ],
             "include_dirs": [ ".", "APP/Inc", "BSP/Inc" ]
         },
         "mbedtls": {

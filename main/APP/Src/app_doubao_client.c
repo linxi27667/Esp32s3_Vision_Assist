@@ -24,8 +24,51 @@ static const char *TAG = "DOUBAO_AI";
 #define DOUBAO_API_URL      "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
 // ==========================================
 
+/* ================= 1. 定义对话历史结构 ================= */
+#define MAX_HISTORY_COUNT 20  // 升级：保留 20 条历史记录 (10 轮对话)，让 AI 更长情
+#define MAX_CONTENT_LEN   1024 // 升级：单条记录最大 1KB，哪怕老人唠叨也能记住
+
+typedef struct {
+    char *role;    // "user" or "assistant"
+    char *content; // 对话内容
+} ChatMessage;
+
+static ChatMessage history[MAX_HISTORY_COUNT];
+static int history_count = 0;
+
+/* ================= 2. 历史记录管理函数 ================= */
+static void History_Add(const char *role, const char *content) {
+    // 如果满了，移除最早的一条 (FIFO)
+    if (history_count >= MAX_HISTORY_COUNT) {
+        if (history[0].role) free(history[0].role);
+        if (history[0].content) free(history[0].content);
+        
+        // 整体前移
+        for (int i = 1; i < MAX_HISTORY_COUNT; i++) {
+            history[i-1] = history[i];
+        }
+        history_count--;
+    }
+
+    // 添加新记录
+    history[history_count].role = strdup(role);
+    // 截断过长的内容以节省内存
+    if (strlen(content) > MAX_CONTENT_LEN) {
+        char *truncated = (char *)malloc(MAX_CONTENT_LEN + 1);
+        if (truncated) {
+            strncpy(truncated, content, MAX_CONTENT_LEN);
+            truncated[MAX_CONTENT_LEN] = '\0';
+            history[history_count].content = truncated;
+        }
+    } else {
+        history[history_count].content = strdup(content);
+    }
+    history_count++;
+}
+
 // 接收大模型返回数据的全局缓存区 (使用 PSRAM 或内部 RAM)
-#define MAX_HTTP_RECV_BUFFER 4096
+// 升级：加大到 16KB，防止长对话被截断
+#define MAX_HTTP_RECV_BUFFER 16384 
 static char *response_data = NULL;
 static int response_len = 0;
 
@@ -37,6 +80,7 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt) {
                 if (response_data == NULL) {
                     response_data = (char *)malloc(MAX_HTTP_RECV_BUFFER);
                     response_len = 0;
+                    if (response_data == NULL) return ESP_FAIL;
                 }
                 if (response_len + evt->data_len < MAX_HTTP_RECV_BUFFER) {
                     memcpy(response_data + response_len, evt->data, evt->data_len);
@@ -67,23 +111,31 @@ void App_Doubao_Post(const char *user_prompt) {
     ESP_LOGI(TAG, "正在打包 JSON 请求...");
 #endif
 
-    // 1. 使用 cJSON 组装 OpenAI 格式的请求体
+    // 1. 将用户的新问题加入历史记录
+    History_Add("user", user_prompt);
+
+    // 2. 使用 cJSON 组装 OpenAI 格式的请求体
     cJSON *root = cJSON_CreateObject();
     cJSON_AddStringToObject(root, "model", DOUBAO_MODEL_EP);
     
     cJSON *messages = cJSON_CreateArray();
     
-    // 系统人设设定 (System Prompt)
+    // 2.1 系统人设设定 (System Prompt) - 始终放在第一条
     cJSON *msg_sys = cJSON_CreateObject();
     cJSON_AddStringToObject(msg_sys, "role", "system");
     cJSON_AddStringToObject(msg_sys, "content", "你是一个名叫'银发智护'的老年人陪伴管家。请用简短、温柔、通俗的中文回答问题。");
     cJSON_AddItemToArray(messages, msg_sys);
 
-    // 用户提问 (User Prompt)
-    cJSON *msg_usr = cJSON_CreateObject();
-    cJSON_AddStringToObject(msg_usr, "role", "user");
-    cJSON_AddStringToObject(msg_usr, "content", user_prompt);
-    cJSON_AddItemToArray(messages, msg_usr);
+    // 2.2 填充历史对话记录
+    for (int i = 0; i < history_count; i++) {
+        cJSON *msg_hist = cJSON_CreateObject();
+        cJSON_AddStringToObject(msg_hist, "role", history[i].role);
+        cJSON_AddStringToObject(msg_hist, "content", history[i].content);
+        cJSON_AddItemToArray(messages, msg_hist);
+    }
+
+    // 注意：因为我们在开头已经把 user_prompt 加入了 history，所以这里不需要再单独添加了
+    // 否则会导致最后一条消息重复
 
     cJSON_AddItemToObject(root, "messages", messages);
 
@@ -108,9 +160,9 @@ void App_Doubao_Post(const char *user_prompt) {
         #else
         .crt_bundle_attach = esp_crt_bundle_attach_all, // ESP-IDF 4.x 版本
         #endif
-        .timeout_ms = 30000,                        // 保留30秒超时
+        .timeout_ms = 60000,                        // 升级：60秒超时，等待长回复
         .keep_alive_enable = true,                  // 保留长连接
-        .buffer_size = 4096,                       // 接收缓冲区
+        .buffer_size = MAX_HTTP_RECV_BUFFER,        // 接收缓冲区
         .buffer_size_tx = 4096,                    // 发送缓冲区
     };
 #if (DEBUG_MODE == 1)

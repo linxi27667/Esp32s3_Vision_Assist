@@ -127,49 +127,67 @@ void App_Video_Capture_And_Recognize(const char *prompt) {
         camera_config_t camera_config;
         HW_Camera_Config_Get(&camera_config);
         if (!BSP_Camera_Init(&camera_config)) {
+            ESP_LOGE(TAG, "摄像头初始化失败");
             return;
         }
         camera_ready = true;
     }
 
+    // 1. 咔嚓！拍照
     camera_fb_t *fb = esp_camera_fb_get();
     if (!fb || fb->len == 0) {
-        if (fb) {
-            esp_camera_fb_return(fb);
-        }
+        ESP_LOGE(TAG, "抓图失败");
+        if (fb) esp_camera_fb_return(fb);
         return;
     }
+    ESP_LOGI(TAG, "拍照成功，JPEG大小: %zu bytes", fb->len);
 
+    // 2. 计算精准内存，强制分配在 PSRAM 中 (MALLOC_CAP_SPIRAM)
+    const char *prefix = "data:image/jpeg;base64,";
+    size_t prefix_len = strlen(prefix);
     size_t base64_len = ((fb->len + 2) / 3) * 4 + 1;
-    char *base64_buf = (char *)malloc(base64_len);
-    if (!base64_buf) {
+    size_t data_uri_len = prefix_len + base64_len;
+
+    // 【核心优化】只分配一次内存！强制在 8MB PSRAM 中分配
+    char *data_uri = (char *)heap_caps_malloc(data_uri_len, MALLOC_CAP_SPIRAM);
+    if (!data_uri) {
+        ESP_LOGE(TAG, "PSRAM 内存分配失败！需要 %zu bytes", data_uri_len);
         esp_camera_fb_return(fb);
         return;
     }
 
+    // 3. 内存拼图游戏
+    // 先把前缀拷进去
+    strcpy(data_uri, prefix); 
+    
+    // 让 mbedtls 直接把 base64 数据写到前缀的后面！完美避开双重 malloc！
     size_t out_len = 0;
-    int ret = mbedtls_base64_encode((unsigned char *)base64_buf, base64_len, &out_len, fb->buf, fb->len);
-    esp_camera_fb_return(fb);
+    int ret = mbedtls_base64_encode(
+        (unsigned char *)(data_uri + prefix_len), // 直接写到前缀后面的地址
+        base64_len, 
+        &out_len, 
+        fb->buf, 
+        fb->len
+    );
+    
+    // 照片用完了，第一时间还给底层
+    esp_camera_fb_return(fb); 
+
     if (ret != 0) {
-        free(base64_buf);
+        ESP_LOGE(TAG, "Base64 编码失败");
+        free(data_uri);
         return;
     }
-    base64_buf[out_len] = '\0';
 
-    const char *prefix = "data:image/jpeg;base64,";
-    size_t data_uri_len = strlen(prefix) + out_len + 1;
-    char *data_uri = (char *)malloc(data_uri_len);
-    if (!data_uri) {
-        free(base64_buf);
-        return;
-    }
-    snprintf(data_uri, data_uri_len, "%s%s", prefix, base64_buf);
-    free(base64_buf);
+    ESP_LOGI(TAG, "Base64 打包完成，准备发送给豆包...");
 
+    // 4. 发送给豆包
     if (prompt == NULL || prompt[0] == '\0') {
         App_Doubao_Post_Image(data_uri, "请识别图片内容并用一句话描述");
     } else {
         App_Doubao_Post_Image(data_uri, prompt);
     }
-    free(data_uri);
+
+    // 5. 释放 PSRAM 内存
+    free(data_uri); 
 }

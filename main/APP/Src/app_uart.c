@@ -11,34 +11,65 @@
 #include <string.h>
 #include <stdio.h>
 #include "sdkconfig.h"
-#include "app_doubao_client.h"
-#include "app_video_server.h"
+#include "app_message.h" // 引入消息队列模块
 
 static const char *TAG = "APP_UART";
-static void On_AI_Chat_Received(const uint8_t *data, uint32_t len);
 
 static void On_AI_Chat_Received(const uint8_t *data, uint32_t len) {
     char clean_str[512] = {0};
-    snprintf(clean_str, sizeof(clean_str), "%s", (char *)data);
+    
+    // 1. 安全拷贝并处理换行符
+    if (len >= sizeof(clean_str)) len = sizeof(clean_str) - 1;
+    memcpy(clean_str, data, len);
     clean_str[strcspn(clean_str, "\r\n")] = 0;
 
     if (strlen(clean_str) > 0) {
-        ESP_LOGI(TAG, "💻 串口输入: %s", clean_str);
+        ESP_LOGI(TAG, "💻 串口收到指令: %s", clean_str);
+        
+        // 2. 判断指令类型并投递到队列
         if (strncmp(clean_str, "img", 3) == 0) {
-            App_Video_Capture_And_Recognize(NULL);
+            // 发送图像识别指令 (非阻塞)
+            App_Message_Send(MSG_TYPE_CMD_IMAGE, NULL);
         } else {
-            App_Doubao_Post(clean_str);
+            // 发送文本对话请求 (非阻塞)
+            App_Message_Send(MSG_TYPE_TEXT, clean_str);
         }
     }
 }
 
 static void console_event_task(void *pvParameters) {
     char input_buf[512];
+    int idx = 0;
+    
+    // 清空缓冲区
+    memset(input_buf, 0, sizeof(input_buf));
+
     while (1) {
-        if (fgets(input_buf, sizeof(input_buf), stdin) != NULL) {
-            On_AI_Chat_Received((const uint8_t *)input_buf, strlen(input_buf));
+        int c = fgetc(stdin); // 逐字符读取，最稳妥的方式
+        
+        if (c != EOF) {
+            // 回显字符 (让用户知道自己输入了什么)
+            fputc(c, stdout);
+            
+            // 如果遇到换行符，说明一句话结束了
+            if (c == '\n' || c == '\r') {
+                if (idx > 0) {
+                    fputc('\n', stdout); // 补一个换行美观
+                    input_buf[idx] = '\0'; // 确保字符串结束
+                    On_AI_Chat_Received((const uint8_t *)input_buf, idx);
+                    idx = 0;
+                    memset(input_buf, 0, sizeof(input_buf));
+                }
+            } else {
+                // 正常字符，存入缓冲区
+                if (idx < sizeof(input_buf) - 1) {
+                    input_buf[idx++] = (char)c;
+                }
+            }
+        } else {
+            // 如果没有输入，稍微休息一下，释放 CPU
+            vTaskDelay(pdMS_TO_TICKS(10));
         }
-        vTaskDelay(pdMS_TO_TICKS(20));
     }
 }
 

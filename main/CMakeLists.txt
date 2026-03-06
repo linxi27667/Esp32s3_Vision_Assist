@@ -7,6 +7,7 @@ idf_component_register(
          "BSP/Src/bsp_camera.c"
          "APP/Src/app_doubao_client.c"
          "APP/Src/app_uart.c"
+         "APP/Src/app_message.c" 
          "BSP/Src/bsp_uart.c"
          
     INCLUDE_DIRS "."

@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//No help, variable specified on the command line.
+CCACHE_ENABLE:UNINITIALIZED=1
+
+//Path to a program.
+CCACHE_FOUND:FILEPATH=E:/MCU/esp32/.espressif/tools/ccache/4.11.2/ccache-4.11.2-windows-x86_64/ccache.exe
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20250707/xtensa-esp-elf/bin/xtensa-esp32s3-elf-addr2line.exe
 
@@ -32,20 +38,19 @@ CMAKE_ASM_COMPILER_RANLIB:FILEPATH=E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/
 CMAKE_ASM_FLAGS:STRING='-mlongcalls '
 
 //Flags used by the ASM compiler during DEBUG builds.
-CMAKE_ASM_FLAGS_DEBUG:STRING=-g
+CMAKE_ASM_FLAGS_DEBUG:STRING=
 
 //Flags used by the ASM compiler during MINSIZEREL builds.
-CMAKE_ASM_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
+CMAKE_ASM_FLAGS_MINSIZEREL:STRING=
 
 //Flags used by the ASM compiler during RELEASE builds.
-CMAKE_ASM_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
+CMAKE_ASM_FLAGS_RELEASE:STRING=
 
 //Flags used by the ASM compiler during RELWITHDEBINFO builds.
-CMAKE_ASM_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
+CMAKE_ASM_FLAGS_RELWITHDEBINFO:STRING=
 
-//Choose the type of build, options are: None Debug Release RelWithDebInfo
-// MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
+//No help, variable specified on the command line.
+CMAKE_BUILD_TYPE:STRING=Debug
 
 //CXX compiler
 CMAKE_CXX_COMPILER:STRING=E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20250707/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe
@@ -62,16 +67,16 @@ CMAKE_CXX_COMPILER_RANLIB:FILEPATH=E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/
 CMAKE_CXX_FLAGS:STRING=-mlongcalls  -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero -fno-builtin-stpcpy -fno-builtin-strncpy
 
 //Flags used by the CXX compiler during DEBUG builds.
-CMAKE_CXX_FLAGS_DEBUG:STRING=-g
+CMAKE_CXX_FLAGS_DEBUG:STRING=
 
 //Flags used by the CXX compiler during MINSIZEREL builds.
-CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
+CMAKE_CXX_FLAGS_MINSIZEREL:STRING=
 
 //Flags used by the CXX compiler during RELEASE builds.
-CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
+CMAKE_CXX_FLAGS_RELEASE:STRING=
 
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
-CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
+CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=
 
 //C compiler
 CMAKE_C_COMPILER:STRING=E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20250707/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe
@@ -88,16 +93,16 @@ CMAKE_C_COMPILER_RANLIB:FILEPATH=E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/es
 CMAKE_C_FLAGS:STRING=-mlongcalls  -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero -fno-builtin-stpcpy -fno-builtin-strncpy
 
 //Flags used by the C compiler during DEBUG builds.
-CMAKE_C_FLAGS_DEBUG:STRING=-g
+CMAKE_C_FLAGS_DEBUG:STRING=
 
 //Flags used by the C compiler during MINSIZEREL builds.
-CMAKE_C_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
+CMAKE_C_FLAGS_MINSIZEREL:STRING=
 
 //Flags used by the C compiler during RELEASE builds.
-CMAKE_C_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
+CMAKE_C_FLAGS_RELEASE:STRING=
 
 //Flags used by the C compiler during RELWITHDEBINFO builds.
-CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
+CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
 CMAKE_DLLTOOL:FILEPATH=CMAKE_DLLTOOL-NOTFOUND
@@ -117,8 +122,8 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
 //Flags used by the linker during RELWITHDEBINFO builds.
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
-//Enable/Disable output of compile commands during generation.
-CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
+//No help, variable specified on the command line.
+CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE
 
 //Value Computed by CMake.
 CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=E:/MCU/esp32/Myesps3Project/wifi_connect/build/CMakeFiles/pkgRedirects
@@ -178,7 +183,7 @@ CMAKE_INSTALL_SYSCONFDIR:PATH=etc
 CMAKE_LINKER:FILEPATH=E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20250707/xtensa-esp-elf/bin/xtensa-esp32s3-elf-ld.exe
 
 //Program used to build from build.ninja files.
-CMAKE_MAKE_PROGRAM:FILEPATH=E:/MCU/esp32/.espressif/tools/ninja/1.12.1/ninja.exe
+CMAKE_MAKE_PROGRAM:FILEPATH=C:/ST/STM32CubeCLT_1.20.0/Ninja/bin/ninja.exe
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -232,9 +237,6 @@ CMAKE_PROJECT_VERSION_PATCH:STATIC=4
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION_TWEAK:STATIC=
-
-//Path to a program.
-CMAKE_RANLIB:FILEPATH=E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20250707/xtensa-esp-elf/bin/xtensa-esp32s3-elf-ranlib.exe
 
 //Path to a program.
 CMAKE_READELF:FILEPATH=E:/MCU/esp32/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20250707/xtensa-esp-elf/bin/xtensa-esp32s3-elf-readelf.exe
@@ -310,6 +312,9 @@ ENABLE_PROGRAMS:BOOL=
 //Build Mbed TLS tests.
 ENABLE_TESTING:BOOL=
 
+//No help, variable specified on the command line.
+ESP_PLATFORM:UNINITIALIZED=1
+
 //Generate the auto-generated files as needed
 GEN_FILES:BOOL=
 
@@ -348,6 +353,15 @@ Mbed TLS_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 Mbed TLS_SOURCE_DIR:STATIC=E:/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/mbedtls
+
+//No help, variable specified on the command line.
+PYTHON:UNINITIALIZED=e:\MCU\esp32\.espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe
+
+//No help, variable specified on the command line.
+PYTHON_DEPS_CHECKED:UNINITIALIZED=1
+
+//No help, variable specified on the command line.
+SDKCONFIG:UNINITIALIZED=e:\MCU\esp32\Myesps3Project\wifi_connect\sdkconfig
 
 //Allow unsafe builds. These builds ARE NOT SECURE.
 UNSAFE_BUILD:BOOL=OFF
@@ -464,9 +478,9 @@ CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_DLLTOOL
 CMAKE_DLLTOOL-ADVANCED:INTERNAL=1
 //Path to cache edit program executable.
-CMAKE_EDIT_COMMAND:INTERNAL=E:/MCU/esp32/.espressif/tools/cmake/3.30.2/bin/cmake-gui.exe
+CMAKE_EDIT_COMMAND:INTERNAL=C:/ST/STM32CubeCLT_1.20.0/CMake/bin/cmake-gui.exe
 //Executable file format
-CMAKE_EXECUTABLE_FORMAT:INTERNAL=ELF
+CMAKE_EXECUTABLE_FORMAT:INTERNAL=Unknown
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS
 CMAKE_EXE_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_DEBUG
@@ -477,8 +491,6 @@ CMAKE_EXE_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_EXE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_EXPORT_COMPILE_COMMANDS
-CMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED:INTERNAL=1
 //Name of external makefile project generator.
 CMAKE_EXTRA_GENERATOR:INTERNAL=
 //Name of generator.
@@ -550,8 +562,8 @@ CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 CMAKE_OBJDUMP-ADVANCED:INTERNAL=1
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_RANLIB
-CMAKE_RANLIB-ADVANCED:INTERNAL=1
+//noop for ranlib
+CMAKE_RANLIB:INTERNAL=:
 //ADVANCED property for variable: CMAKE_READELF
 CMAKE_READELF-ADVANCED:INTERNAL=1
 //Path to CMake installation.
