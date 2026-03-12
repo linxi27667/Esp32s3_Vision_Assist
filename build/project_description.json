@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "wifi_connect_yolo",
-    "project_version":    "ad62aeb-dirty",
+    "project_version":    "b98b658-dirty",
     "project_path":       "E:/MCU/esp32/Myesps3Project/wifi_connect_yolo",
     "idf_path":           "E:/MCU/esp32/v5.2.6/esp-idf",
     "build_dir":          "E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build",

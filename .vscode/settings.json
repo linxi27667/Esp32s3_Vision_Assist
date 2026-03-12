@@ -1,6 +1,6 @@
 {
   "C_Cpp.intelliSenseEngine": "default",
-  "idf.portWin": "COM22",
+  "idf.portWin": "COM23",
   "idf.openOcdConfigs": [
     "board/esp32s3-builtin.cfg"
   ],

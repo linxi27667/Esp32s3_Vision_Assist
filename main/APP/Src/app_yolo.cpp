@@ -65,7 +65,7 @@ static void yolo_inference_task(void *arg) {
             uint32_t elapsed = (xTaskGetTickCount() - start_time) * portTICK_PERIOD_MS;
             ESP_LOGI(TAG, "推理耗时: %lu ms, 发现目标: %d 个", elapsed, results.size());
 
-            // 4. 获取互斥锁，更新全局结果 (这步极快)
+        // 4. 获取互斥锁，更新全局结果
             if (xSemaphoreTake(g_yolo_mutex, portMAX_DELAY) == pdTRUE) {
                 g_yolo_result.count = 0;
                 for (const auto &res : results) {
@@ -76,6 +76,12 @@ static void yolo_inference_task(void *arg) {
                     g_yolo_result.boxes[g_yolo_result.count].h = res.box[3];
                     g_yolo_result.boxes[g_yolo_result.count].class_id = res.category;
                     g_yolo_result.boxes[g_yolo_result.count].confidence = res.score;
+                    
+                    // ================= 添加下面这行日志打印 =================
+                    ESP_LOGI(TAG, "🎯 抓到目标! 坐标 X:%d, Y:%d | 大小 宽:%d, 高:%d | 概率:%.2f", 
+                             res.box[0], res.box[1], res.box[2], res.box[3], res.score);
+                    // =======================================================
+
                     g_yolo_result.count++;
                 }
                 xSemaphoreGive(g_yolo_mutex);
