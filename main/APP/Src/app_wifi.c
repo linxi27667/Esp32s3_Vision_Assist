@@ -20,9 +20,9 @@ static const char *TAG = "APP_WIFI";
 #define MAX_RETRY_TIMES  5
 
 void App_WiFi_System_Init(void) {
-    esp_log_level_set("wifi", ESP_LOG_WARN);
-    esp_log_level_set("esp_netif_handlers", ESP_LOG_WARN);
-    esp_log_level_set("BSP_WIFI", ESP_LOG_WARN);
+    esp_log_level_set("wifi", ESP_LOG_INFO);
+    esp_log_level_set("esp_netif_handlers", ESP_LOG_INFO);
+    esp_log_level_set("BSP_WIFI", ESP_LOG_INFO);
 
     bsp_wifi_config_t my_wifi_cfg = {
         .max_retry = MAX_RETRY_TIMES,

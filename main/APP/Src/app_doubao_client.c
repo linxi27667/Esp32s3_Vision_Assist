@@ -389,7 +389,8 @@ static void doubao_message_task(void *pvParameters) {
             switch (msg.type) {
                 case MSG_TYPE_TEXT:
                     // 收到文本，直接请求豆包大模型
-                    App_Doubao_Post(msg.content);
+                    // App_Doubao_Post(msg.content); // 临时屏蔽豆包
+                    ESP_LOGI(TAG, "临时屏蔽豆包文本请求: %s", msg.content);
                     break;
 
                 case MSG_TYPE_CMD_IMAGE:

@@ -1,7 +1,7 @@
 # Additional clean files
 cmake_minimum_required(VERSION 3.16)
 
-if("${CONFIG}" STREQUAL "" OR "${CONFIG}" STREQUAL "Debug")
+if("${CONFIG}" STREQUAL "" OR "${CONFIG}" STREQUAL "")
   file(REMOVE_RECURSE
   "bootloader\\bootloader.bin"
   "bootloader\\bootloader.elf"
@@ -14,11 +14,12 @@ if("${CONFIG}" STREQUAL "" OR "${CONFIG}" STREQUAL "Debug")
   "flash_bootloader_args"
   "flash_project_args"
   "flasher_args.json"
+  "human_face_detect.espdl.S"
   "ldgen_libraries"
   "ldgen_libraries.in"
   "project_elf_src_esp32s3.c"
-  "wifi_connect.bin"
-  "wifi_connect.map"
+  "wifi_connect_yolo.bin"
+  "wifi_connect_yolo.map"
   "x509_crt_bundle.S"
   )
 endif()

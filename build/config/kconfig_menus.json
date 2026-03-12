@@ -20018,7 +20018,10 @@
                         "help": "This baud rate is used by both the ESP-IDF Bootloader and the app (including\nboot log output and default standard input/output/error of the app).\n\nThe app's maximum baud rate depends on the UART clock source. If Power Management is disabled,\nthe UART clock source is the APB clock and all baud rates in the available range will be sufficiently\naccurate. If Power Management is enabled, REF_TICK clock source is used so the baud rate is divided\nfrom 1MHz. Baud rates above 1Mbps are not possible and values between 500Kbps and 1Mbps may not be\naccurate.\n\nIf the configuration is different in the Bootloader binary compared to the app binary, UART\nis reconfigured after the bootloader exits and the app starts.",
                         "id": "ESP_CONSOLE_UART_BAUDRATE",
                         "name": "ESP_CONSOLE_UART_BAUDRATE",
-                        "range": null,
+                        "range": [
+                            1200,
+                            4000000
+                        ],
                         "title": "UART console baud rate",
                         "type": "int"
                     },
@@ -20726,7 +20729,10 @@
                         "help": "Set the number of WiFi static TX buffers. Each buffer takes approximately 1.6KB of RAM.\nThe static RX buffers are allocated when esp_wifi_init() is called, they are not released\nuntil esp_wifi_deinit() is called.\n\nFor each transmitted data frame from the higher layer TCP/IP stack, the WiFi driver makes a\ncopy of it in a TX buffer.  For some applications especially UDP applications, the upper\nlayer can deliver frames faster than WiFi layer can transmit. In these cases, we may run out\nof TX buffers.",
                         "id": "ESP_WIFI_STATIC_TX_BUFFER_NUM",
                         "name": "ESP_WIFI_STATIC_TX_BUFFER_NUM",
-                        "range": null,
+                        "range": [
+                            1,
+                            64
+                        ],
                         "title": "Max number of WiFi static TX buffers",
                         "type": "int"
                     },
@@ -20736,7 +20742,10 @@
                         "help": "Set the number of WiFi cache TX buffer number.\n\nFor each TX packet from uplayer, such as LWIP etc, WiFi driver needs to allocate a static TX\nbuffer and makes a copy of uplayer packet. If WiFi driver fails to allocate the static TX buffer,\nit caches the uplayer packets to a dedicated buffer queue, this option is used to configure the\nsize of the cached TX queue.",
                         "id": "ESP_WIFI_CACHE_TX_BUFFER_NUM",
                         "name": "ESP_WIFI_CACHE_TX_BUFFER_NUM",
-                        "range": null,
+                        "range": [
+                            0,
+                            128
+                        ],
                         "title": "Max number of WiFi cache TX buffers",
                         "type": "int"
                     },
@@ -20746,10 +20755,7 @@
                         "help": "Set the number of WiFi dynamic TX buffers. The size of each dynamic TX buffer is not fixed,\nit depends on the size of each transmitted data frame.\n\nFor each transmitted frame from the higher layer TCP/IP stack, the WiFi driver makes a copy\nof it in a TX buffer. For some applications, especially UDP applications, the upper layer\ncan deliver frames faster than WiFi layer can transmit. In these cases, we may run out of TX\nbuffers.",
                         "id": "ESP_WIFI_DYNAMIC_TX_BUFFER_NUM",
                         "name": "ESP_WIFI_DYNAMIC_TX_BUFFER_NUM",
-                        "range": [
-                            1,
-                            128
-                        ],
+                        "range": null,
                         "title": "Max number of WiFi dynamic TX buffers",
                         "type": "int"
                     },
@@ -30648,6 +30654,262 @@
                 "depends_on": null,
                 "id": "component-config-wi-fi-provisioning-manager",
                 "title": "Wi-Fi Provisioning Manager",
+                "type": "menu"
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "depends_on": "!HUMAN_FACE_DETECT_MODEL_IN_SDCARD",
+                        "help": null,
+                        "id": "FLASH_HUMAN_FACE_DETECT_MSRMNP_S8_V1",
+                        "name": "FLASH_HUMAN_FACE_DETECT_MSRMNP_S8_V1",
+                        "range": null,
+                        "title": "flash human_face_detect_msrmnp_s8_v1",
+                        "type": "bool"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": "(HUMAN_FACE_DETECT_MODEL_IN_SDCARD || FLASH_HUMAN_FACE_DETECT_MSRMNP_S8_V1) && <choice>",
+                                "help": null,
+                                "id": "HUMAN_FACE_DETECT_MSRMNP_S8_V1",
+                                "name": "HUMAN_FACE_DETECT_MSRMNP_S8_V1",
+                                "range": null,
+                                "title": "human_face_detect_msrmnp_s8_v1",
+                                "type": "bool"
+                            }
+                        ],
+                        "depends_on": null,
+                        "help": "default human_face_detect model",
+                        "id": "component-config-models-human_face_detect-default-model",
+                        "name": null,
+                        "title": "default model",
+                        "type": "choice"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": null,
+                        "id": "DEFAULT_HUMAN_FACE_DETECT_MODEL",
+                        "name": "DEFAULT_HUMAN_FACE_DETECT_MODEL",
+                        "range": null,
+                        "title": null,
+                        "type": "int"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": "<choice>",
+                                "help": null,
+                                "id": "HUMAN_FACE_DETECT_MODEL_IN_FLASH_RODATA",
+                                "name": "HUMAN_FACE_DETECT_MODEL_IN_FLASH_RODATA",
+                                "range": null,
+                                "title": "flash_rodata",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "<choice>",
+                                "help": null,
+                                "id": "HUMAN_FACE_DETECT_MODEL_IN_FLASH_PARTITION",
+                                "name": "HUMAN_FACE_DETECT_MODEL_IN_FLASH_PARTITION",
+                                "range": null,
+                                "title": "flash_partition",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "<choice>",
+                                "help": null,
+                                "id": "HUMAN_FACE_DETECT_MODEL_IN_SDCARD",
+                                "name": "HUMAN_FACE_DETECT_MODEL_IN_SDCARD",
+                                "range": null,
+                                "title": "sdcard",
+                                "type": "bool"
+                            }
+                        ],
+                        "depends_on": null,
+                        "help": "human_face_detect model location",
+                        "id": "component-config-models-human_face_detect-model-location",
+                        "name": null,
+                        "title": "model location",
+                        "type": "choice"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": null,
+                        "id": "HUMAN_FACE_DETECT_MODEL_LOCATION",
+                        "name": "HUMAN_FACE_DETECT_MODEL_LOCATION",
+                        "range": null,
+                        "title": null,
+                        "type": "int"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": "HUMAN_FACE_DETECT_MODEL_IN_SDCARD",
+                        "help": "Directory of models relative to sdcard mount point.",
+                        "id": "HUMAN_FACE_DETECT_MODEL_SDCARD_DIR",
+                        "name": "HUMAN_FACE_DETECT_MODEL_SDCARD_DIR",
+                        "range": null,
+                        "title": "human_face_detect model sdcard dir",
+                        "type": "string"
+                    }
+                ],
+                "depends_on": null,
+                "id": "component-config-models-human_face_detect",
+                "title": "models: human_face_detect",
+                "type": "menu"
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "depends_on": "IDF_TARGET_ESP32 || IDF_TARGET_ESP32S3 || IDF_TARGET_ESP32P4",
+                        "help": null,
+                        "id": "DSP_OPTIMIZATIONS_SUPPORTED",
+                        "name": "DSP_OPTIMIZATIONS_SUPPORTED",
+                        "range": null,
+                        "title": null,
+                        "type": "bool"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": "<choice DSP_OPTIMIZATION>",
+                                "help": null,
+                                "id": "DSP_ANSI",
+                                "name": "DSP_ANSI",
+                                "range": null,
+                                "title": "ANSI C",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "DSP_OPTIMIZATIONS_SUPPORTED && <choice DSP_OPTIMIZATION>",
+                                "help": null,
+                                "id": "DSP_OPTIMIZED",
+                                "name": "DSP_OPTIMIZED",
+                                "range": null,
+                                "title": "Optimized",
+                                "type": "bool"
+                            }
+                        ],
+                        "depends_on": null,
+                        "help": "An ANSI C version could be used for verification and debug purpose,\nor for chips where an optimized version is not available.",
+                        "id": "component-config-dsp-library-dsp-optimization",
+                        "name": "DSP_OPTIMIZATION",
+                        "title": "DSP Optimization",
+                        "type": "choice"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": null,
+                        "id": "DSP_OPTIMIZATION",
+                        "name": "DSP_OPTIMIZATION",
+                        "range": null,
+                        "title": null,
+                        "type": "int"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": "<choice DSP_MAX_FFT_SIZE>",
+                                "help": null,
+                                "id": "DSP_MAX_FFT_SIZE_512",
+                                "name": "DSP_MAX_FFT_SIZE_512",
+                                "range": null,
+                                "title": "512",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "<choice DSP_MAX_FFT_SIZE>",
+                                "help": null,
+                                "id": "DSP_MAX_FFT_SIZE_1024",
+                                "name": "DSP_MAX_FFT_SIZE_1024",
+                                "range": null,
+                                "title": "1024",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "<choice DSP_MAX_FFT_SIZE>",
+                                "help": null,
+                                "id": "DSP_MAX_FFT_SIZE_2048",
+                                "name": "DSP_MAX_FFT_SIZE_2048",
+                                "range": null,
+                                "title": "2048",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "<choice DSP_MAX_FFT_SIZE>",
+                                "help": null,
+                                "id": "DSP_MAX_FFT_SIZE_4096",
+                                "name": "DSP_MAX_FFT_SIZE_4096",
+                                "range": null,
+                                "title": "4096",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "<choice DSP_MAX_FFT_SIZE>",
+                                "help": null,
+                                "id": "DSP_MAX_FFT_SIZE_8192",
+                                "name": "DSP_MAX_FFT_SIZE_8192",
+                                "range": null,
+                                "title": "8192",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "<choice DSP_MAX_FFT_SIZE>",
+                                "help": null,
+                                "id": "DSP_MAX_FFT_SIZE_16384",
+                                "name": "DSP_MAX_FFT_SIZE_16384",
+                                "range": null,
+                                "title": "16384",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "<choice DSP_MAX_FFT_SIZE>",
+                                "help": null,
+                                "id": "DSP_MAX_FFT_SIZE_32768",
+                                "name": "DSP_MAX_FFT_SIZE_32768",
+                                "range": null,
+                                "title": "32768",
+                                "type": "bool"
+                            }
+                        ],
+                        "depends_on": null,
+                        "help": "This is default FFT size for internal usage.",
+                        "id": "component-config-dsp-library-maximum-fft-length",
+                        "name": "DSP_MAX_FFT_SIZE",
+                        "title": "Maximum FFT length",
+                        "type": "choice"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": null,
+                        "id": "DSP_MAX_FFT_SIZE",
+                        "name": "DSP_MAX_FFT_SIZE",
+                        "range": null,
+                        "title": null,
+                        "type": "int"
+                    }
+                ],
+                "depends_on": null,
+                "id": "component-config-dsp-library",
+                "title": "DSP Library",
                 "type": "menu"
             },
             {

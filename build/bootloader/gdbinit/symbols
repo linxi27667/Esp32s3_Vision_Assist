@@ -17,4 +17,4 @@ set confirm off
 set confirm on
 
 # Load application symbols
-file E:/MCU/esp32/Myesps3Project/wifi_connect/build/bootloader/bootloader.elf
+file E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader/bootloader.elf

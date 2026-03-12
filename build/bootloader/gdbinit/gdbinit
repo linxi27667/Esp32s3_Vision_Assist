@@ -1,2 +1,2 @@
-source E:/MCU/esp32/Myesps3Project/wifi_connect/build/bootloader/gdbinit/symbols
-source E:/MCU/esp32/Myesps3Project/wifi_connect/build/bootloader/gdbinit/connect
+source E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader/gdbinit/symbols
+source E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader/gdbinit/connect

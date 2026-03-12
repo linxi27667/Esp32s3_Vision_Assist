@@ -10,18 +10,18 @@ if(NOT EXISTS "E:/MCU/esp32/v5.2.6/esp-idf/components/bootloader/subproject")
   file(MAKE_DIRECTORY "E:/MCU/esp32/v5.2.6/esp-idf/components/bootloader/subproject")
 endif()
 file(MAKE_DIRECTORY
-  "E:/MCU/esp32/Myesps3Project/wifi_connect/build/bootloader"
-  "E:/MCU/esp32/Myesps3Project/wifi_connect/build/bootloader-prefix"
-  "E:/MCU/esp32/Myesps3Project/wifi_connect/build/bootloader-prefix/tmp"
-  "E:/MCU/esp32/Myesps3Project/wifi_connect/build/bootloader-prefix/src/bootloader-stamp"
-  "E:/MCU/esp32/Myesps3Project/wifi_connect/build/bootloader-prefix/src"
-  "E:/MCU/esp32/Myesps3Project/wifi_connect/build/bootloader-prefix/src/bootloader-stamp"
+  "E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader"
+  "E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader-prefix"
+  "E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader-prefix/tmp"
+  "E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader-prefix/src/bootloader-stamp"
+  "E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader-prefix/src"
+  "E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "E:/MCU/esp32/Myesps3Project/wifi_connect/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "E:/MCU/esp32/Myesps3Project/wifi_connect/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

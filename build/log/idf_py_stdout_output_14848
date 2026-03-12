@@ -1,0 +1,17 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D E:\MCU\esp32\Myesps3Project\wifi_connect_yolo\build\bootloader\esp-idf\esptool_py && e:\MCU\esp32\.espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe E:/MCU/esp32/v5.2.6/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader/bootloader.bin"
+Bootloader binary size 0x5a40 bytes. 0x25c0 bytes (29%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/APP/Src/app_video_server.c.obj
+[5/9] Linking C static library esp-idf\main\libmain.a
+[6/9] Generating ld/sections.ld
+[7/9] Linking CXX executable wifi_connect_yolo.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.10.0
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/wifi_connect_yolo.bin
+[9/9] C:\WINDOWS\system32\cmd.exe /C "cd /D E:\MCU\esp32\Myesps3Project\wifi_connect_yolo\build\esp-idf\esptool_py && e:\MCU\esp32\.espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe E:/MCU/esp32/v5.2.6/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/partition_table/partition-table.bin E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/wifi_connect_yolo.bin"
+wifi_connect_yolo.bin binary size 0x2117b0 bytes. Smallest app partition is 0x300000 bytes. 0xee850 bytes (31%) free.

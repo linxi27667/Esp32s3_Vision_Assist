@@ -27,10 +27,10 @@ bool BSP_Camera_Init(camera_config_t *config) {
         s->set_hmirror(s, 0); // 水平镜像
         
         // 升级：开启自动曝光 (AEC) 和自动白平衡 (AWB)，并开启去频闪模式 (Banding Filter)
-        s->set_aec2(s, 1);    // 开启 AEC DSP
-        s->set_awb_gain(s, 1);// 开启 AWB 增益
-        s->set_lenc(s, 1);    // 开启镜头校正
-        s->set_dcw(s, 1);     // 开启 Downsize En (缩放优化)
+        //s->set_aec2(s, 1);    // 开启 AEC DSP
+         //s->set_awb_gain(s, 1);// 开启 AWB 增益
+        //s->set_lenc(s, 1);    // 开启镜头校正
+        //s->set_dcw(s, 1);     // 开启 Downsize En (缩放优化)
     }
     return true;
 }

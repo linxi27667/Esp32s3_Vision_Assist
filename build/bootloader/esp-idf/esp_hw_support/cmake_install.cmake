@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/MCU/esp32/Myesps3Project/wifi_connect/build/bootloader/esp-idf/esp_hw_support/port/esp32s3/cmake_install.cmake")
+  include("E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader/esp-idf/esp_hw_support/port/esp32s3/cmake_install.cmake")
 endif()
 

@@ -1,0 +1,13 @@
+CMake Error:
+  Running
+
+   'E:/MCU/esp32/.espressif/tools/ninja/1.12.1/ninja.exe' '-C' 'E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build' '-t' 'restat' 'build.ninja'
+
+  failed with:
+
+   ninja: error: failed recompaction: Permission denied
+
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+ninja: error: rebuilding 'build.ninja': subcommand failed

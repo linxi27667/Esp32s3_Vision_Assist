@@ -1,4 +1,42 @@
 dependencies:
+  espressif/dl_fft:
+    component_hash: 7dadbd644c0d7ba4733cc3726ec4cff6edf27b043725e1115861dec1609a3d28
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 0.3.1
+  espressif/esp-dl:
+    dependencies:
+    - name: idf
+      version: '>=5.2'
+    - name: espressif/esp_new_jpeg
+      version: ^0.6.1
+    - name: espressif/dl_fft
+      version: '>=0.3.1'
+    - name: espressif/esp-dsp
+      version: ==1.7.0
+    source:
+      path: E:\MCU\esp32\Myesps3Project\wifi_connect_yolo\components\esp-dl\esp-dl
+      type: local
+    targets:
+    - esp32
+    - esp32s3
+    - esp32p4
+    version: 3.2.4
+  espressif/esp-dsp:
+    component_hash: 42dce32d46ac93dc11f60d368e29a830e9661c7345d794b8a45c343479cae636
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.2'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.7.0
   espressif/esp32-camera:
     component_hash: ac4228c825b891378bc0806869170d4ebc5d45ba8ebc519b4f8886a56ad2d123
     dependencies:
@@ -23,13 +61,33 @@ dependencies:
       registry_url: https://components.espressif.com
       type: service
     version: 1.3.1
+  espressif/esp_new_jpeg:
+    component_hash: e6af208a875abd0ecfc0213d3751a11b504b463ebde6930f24096047925fa5c1
+    dependencies: []
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    targets:
+    - esp32
+    - esp32s2
+    - esp32s3
+    - esp32p4
+    - esp32c2
+    - esp32c3
+    - esp32c5
+    - esp32c6
+    version: 0.6.1
   idf:
     source:
       type: idf
     version: 5.2.6
 direct_dependencies:
+- espressif/dl_fft
+- espressif/esp-dl
+- espressif/esp-dsp
 - espressif/esp32-camera
+- espressif/esp_new_jpeg
 - idf
-manifest_hash: bb2e04f03fc22fe03978f48d3f4f74ead5a698f8aba43ac46cd3353f373a000c
+manifest_hash: c332e9371d604e0412541c3dbcae051cab4f84ac053046b9cddbb68d2e802e17
 target: esp32s3
 version: 2.0.0

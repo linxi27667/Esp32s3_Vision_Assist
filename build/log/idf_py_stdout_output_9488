@@ -1,0 +1,163 @@
+[1/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/debug.c.obj
+[2/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/mps_reader.c.obj
+[3/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/mps_trace.c.obj
+[4/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_server.c.obj
+[5/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_keys.c.obj
+[6/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_client.c.obj
+[7/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_ticket.c.obj
+[8/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_cache.c.obj
+[9/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_generic.c.obj
+[10/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_ciphersuites.c.obj
+[11/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_client.c.obj
+[12/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_cookie.c.obj
+[13/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_debug_helpers_generated.c.obj
+[14/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/esp_platform_time.c.obj
+[15/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_msg.c.obj
+[16/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls.c.obj
+[17/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls12_client.c.obj
+[18/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls12_server.c.obj
+[19/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/mbedtls_debug.c.obj
+[20/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509.c.obj
+[21/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/aesni.c.obj
+[22/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/aesce.c.obj
+[23/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/pkcs7.c.obj
+[24/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_create.c.obj
+[25/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_csr.c.obj
+[26/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_crl.c.obj
+[27/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509write_crt.c.obj
+[28/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/aes.c.obj
+[29/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/bignum_mod.c.obj
+[30/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509write_csr.c.obj
+[31/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/aria.c.obj
+[32/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509write.c.obj
+[33/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/bignum_mod_raw.c.obj
+[34/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/asn1parse.c.obj
+[35/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/base64.c.obj
+[36/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/asn1write.c.obj
+[37/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/camellia.c.obj
+[38/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/bignum.c.obj
+[39/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/chacha20.c.obj
+[40/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/block_cipher.c.obj
+[41/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/net_sockets.c.obj
+[42/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/chachapoly.c.obj
+[43/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/bignum_core.c.obj
+[44/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ccm.c.obj
+[45/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_crt.c.obj
+[46/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/cipher.c.obj
+[47/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/constant_time.c.obj
+[48/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/des.c.obj
+[49/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/dhm.c.obj
+[50/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/cipher_wrap.c.obj
+[51/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/cmac.c.obj
+[52/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecdh.c.obj
+[53/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecjpake.c.obj
+[54/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ctr_drbg.c.obj
+[55/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecp_curves_new.c.obj
+[56/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecp_curves.c.obj
+[57/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/hkdf.c.obj
+[58/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/nist_kw.c.obj
+[59/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/memory_buffer_alloc.c.obj
+[60/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecp.c.obj
+[61/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecdsa.c.obj
+[62/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/entropy_poll.c.obj
+[63/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/hmac_drbg.c.obj
+[64/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/entropy.c.obj
+[65/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/md5.c.obj
+[66/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/gcm.c.obj
+[67/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/lmots.c.obj
+[68/146] Linking CXX static library esp-idf\mbedtls\mbedtls\library\libmbedtls.a
+[69/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/error.c.obj
+[70/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/lms.c.obj
+[71/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/md.c.obj
+[72/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/padlock.c.obj
+[73/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/oid.c.obj
+[74/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/poly1305.c.obj
+[75/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pem.c.obj
+[76/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_se.c.obj
+[77/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pk.c.obj
+[78/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/platform.c.obj
+[79/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/platform_util.c.obj
+[80/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pkcs12.c.obj
+[81/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pk_ecc.c.obj
+[82/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_its_file.c.obj
+[83/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pk_wrap.c.obj
+[84/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pkcs5.c.obj
+[85/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_cipher.c.obj
+[86/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pkwrite.c.obj
+[87/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_aead.c.obj
+[88/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pkparse.c.obj
+[89/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_client.c.obj
+[90/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_driver_wrappers_no_static.c.obj
+[91/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_hash.c.obj
+[92/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_mac.c.obj
+[93/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_storage.c.obj
+[94/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto.c.obj
+[95/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_rsa.c.obj
+[96/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_slot_management.c.obj
+[97/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_pake.c.obj
+[98/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_ffdh.c.obj
+[99/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_ecp.c.obj
+[100/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ripemd160.c.obj
+[101/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/rsa_alt_helpers.c.obj
+[102/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/sha3.c.obj
+[103/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/timing.c.obj
+[104/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/threading.c.obj
+[105/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/version.c.obj
+[106/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/version_features.c.obj
+[107/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_util.c.obj
+[108/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/sha/dma/esp_sha_gdma_impl.c.obj
+[109/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/sha256.c.obj
+[110/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/aes/dma/esp_aes_gdma_impl.c.obj
+[111/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/sha512.c.obj
+[112/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/sha1.c.obj
+[113/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/rsa.c.obj
+[114/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/esp_hardware.c.obj
+[115/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/esp_mem.c.obj
+[116/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/crypto_shared_gdma/esp_crypto_shared_gdma.c.obj
+[117/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/esp_timing.c.obj
+[118/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/aes/esp_aes_xts.c.obj
+[119/146] Linking CXX static library esp-idf\mbedtls\mbedtls\library\libmbedx509.a
+[120/146] Building C object esp-idf/mbedtls/mbedtls/3rdparty/everest/CMakeFiles/everest.dir/library/Hacl_Curve25519_joined.c.obj
+[121/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/sha/esp_sha.c.obj
+[122/146] Building C object esp-idf/mbedtls/mbedtls/3rdparty/everest/CMakeFiles/everest.dir/library/x25519.c.obj
+[123/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/md/esp_md.c.obj
+[124/146] Building C object esp-idf/mbedtls/mbedtls/3rdparty/p256-m/CMakeFiles/p256m.dir/p256-m_driver_entrypoints.c.obj
+[125/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/bignum/bignum_alt.c.obj
+[126/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/aes/esp_aes_common.c.obj
+[127/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/sha/dma/esp_sha512.c.obj
+[128/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/sha/dma/esp_sha1.c.obj
+[129/146] Building C object esp-idf/mbedtls/mbedtls/3rdparty/everest/CMakeFiles/everest.dir/library/everest.c.obj
+[130/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/aes/esp_aes_gcm.c.obj
+[131/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/sha/dma/esp_sha256.c.obj
+[132/146] Building C object esp-idf/mbedtls/mbedtls/3rdparty/p256-m/CMakeFiles/p256m.dir/p256-m/p256-m.c.obj
+[133/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/sha/dma/sha.c.obj
+[134/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/esp_ds/esp_rsa_sign_alt.c.obj
+[135/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/aes/dma/esp_aes.c.obj
+[136/146] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/E_/MCU/esp32/v5.2.6/esp-idf/components/mbedtls/port/bignum/esp_bignum.c.obj
+[137/146] Generating ../../partition_table/partition-table.bin
+Partition table binary generated. Contents:
+*******************************************************************************
+# ESP-IDF Partition Table
+# Name, Type, SubType, Offset, Size, Flags
+nvs,data,nvs,0x9000,24K,
+phy_init,data,phy,0xf000,4K,
+factory,app,factory,0x10000,3M,
+coco_det,data,spiffs,0x310000,4M,
+*******************************************************************************
+[138/146] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D E:\MCU\esp32\Myesps3Project\wifi_connect_yolo\build\bootloader\esp-idf\esptool_py && e:\MCU\esp32\.espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe E:/MCU/esp32/v5.2.6/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/bootloader/bootloader.bin"
+Bootloader binary size 0x5a40 bytes. 0x25c0 bytes (29%) free.
+[139/146] No install step for 'bootloader'
+[140/146] Completed 'bootloader'
+[141/146] Linking CXX static library esp-idf\mbedtls\mbedtls\library\libmbedcrypto.a
+[142/146] Linking CXX static library esp-idf\mbedtls\mbedtls\3rdparty\p256-m\libp256m.a
+[143/146] Linking CXX static library esp-idf\mbedtls\mbedtls\3rdparty\everest\libeverest.a
+[144/146] Linking CXX executable wifi_connect_yolo.elf
+[145/146] Generating binary image from built executable
+esptool.py v4.10.0
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/wifi_connect_yolo.bin
+[146/146] C:\WINDOWS\system32\cmd.exe /C "cd /D E:\MCU\esp32\Myesps3Project\wifi_connect_yolo\build\esp-idf\esptool_py && e:\MCU\esp32\.espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe E:/MCU/esp32/v5.2.6/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/partition_table/partition-table.bin E:/MCU/esp32/Myesps3Project/wifi_connect_yolo/build/wifi_connect_yolo.bin"
+wifi_connect_yolo.bin binary size 0x211790 bytes. Smallest app partition is 0x300000 bytes. 0xee870 bytes (31%) free.
