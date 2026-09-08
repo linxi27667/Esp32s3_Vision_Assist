@@ -1,53 +1,28 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C6 | ESP32-H2 | ESP32-P4 | ESP32-S2 | ESP32-S3 | Linux |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | ----- |
+﻿# Esp32s3_Vision_Assist
 
-# Hello World Example
+「随身智护」ESP32-S3-N8R16 终端：摄像头 RGB565 双缓冲、Web MJPEG、Core1 AI 推理（人脸/目标检测），面向视障辅助场景。
 
-Starts a FreeRTOS task to print "Hello World".
+## 系统架构图
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
-
-## How to use example
-
-Follow detailed instructions provided specifically for this example.
-
-Select the instructions depending on Espressif chip installed on your development board:
-
-- [ESP32 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html)
-- [ESP32-S2 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html)
-
-
-## Example folder contents
-
-The project **hello_world** contains one source file in C language [hello_world_main.c](main/hello_world_main.c). The file is located in folder [main](main).
-
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt` files that provide set of directives and instructions describing the project's source files and targets (executable, library, or both).
-
-Below is short explanation of remaining files in the project folder.
-
-```
-├── CMakeLists.txt
-├── pytest_hello_world.py      Python script used for automated testing
-├── main
-│   ├── CMakeLists.txt
-│   └── hello_world_main.c
-└── README.md                  This is the file you are currently reading
+```mermaid
+flowchart TB
+  CAM[OV2640/5640 RGB565] --> C0[Core0 UI/IO\n采集/Web/叠框]
+  C0 -->|非阻塞帧指针| C1[Core1 AI\nyolo_inference]
+  C1 -->|结果互斥锁| C0
+  C0 --> WEB[MJPEG 推流]
+  WIFI[WiFi] --> WEB
 ```
 
-For more information on structure and contents of ESP-IDF projects, please refer to Section [Build System](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/build-system.html) of the ESP-IDF Programming Guide.
+## 功能框图
 
-## Troubleshooting
+```mermaid
+flowchart LR
+  INIT[WiFi/消息总线] --> VID[图传服务]
+  VID --> YOLO[模型加载与推理]
+  YOLO --> BOX[检测框叠加]
+  BOX --> WEB[浏览器调试]
+```
 
-* Program upload failure
+## 远程
 
-    * Hardware connection is not correct: run `idf.py -p PORT monitor`, and reboot your board to see if there are any output logs.
-    * The baud rate for downloading is too high: lower your baud rate in the `menuconfig` menu, and try again.
-
-## Technical support and feedback
-
-Please use the following feedback channels:
-
-* For technical queries, go to the [esp32.com](https://esp32.com/) forum
-* For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-idf/issues)
-
-We will get back to you as soon as possible.
+origin → https://github.com/linxi27667/Esp32s3_Vision_Assist.git
